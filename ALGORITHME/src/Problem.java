@@ -1,3 +1,5 @@
+import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -6,13 +8,7 @@ public class Problem {
     int[] cases;
     public Problem(int n) {
         this.cases = new int[n];
-        Heursitique_1 test = new Heursitique_1(n);
-        for(int i= 0;i<n;i++){
-            for(int j= 0;j<n;j++){
-                System.out.print(test.h[i][j] + " ");
-            }
-            System.out.print("\n");
-        }
+
     }
     boolean isValide(){
         for(int row=0;row<this.cases.length;row++){
@@ -59,7 +55,11 @@ public class Problem {
     }
     void SolveByBFS(){
         bfsQueen bfsQueen= new bfsQueen(this.cases.length);
+        Instant start = Instant.now();
         bfsQueen.BFS(this,this.cases.length);
+        Instant end = Instant.now();
+        Duration timeElapsed = Duration.between(start, end);
+        System.out.println("Time taken BFS: "+ timeElapsed.toMillis() +" milliseconds");
         System.out.println("Le nombre de solution =" +bfsQueen.nbrSolution);
         for(int i=0 ; i<this.cases.length;i++){
             System.out.println("La ligne:" + i + " La Column:" + this.cases[i]);
@@ -68,7 +68,13 @@ public class Problem {
     void SolveByHeurstique(){
         Heursitique_1 h = new Heursitique_1(this.cases.length);
         AEtoile AEtoile= new AEtoile(this.cases.length);
+        System.out.println("************Start**********");
+        Instant start = Instant.now();
         AEtoile.AppliquerA(this.cases.length,h.h,this);
+        Instant end = Instant.now();
+        Duration timeElapsed = Duration.between(start, end);
+        System.out.println("************END**********");
+        System.out.println("Time taken HEURSTIQUE: "+ timeElapsed.toMillis() +" milliseconds");
         System.out.println("Le nombre de solution =" +AEtoile.nbrSolution);
         for(int i=0 ; i<this.cases.length;i++){
             System.out.println("La ligne:" + i + " La Column:" + this.cases[i]);
@@ -161,6 +167,7 @@ class bfsQueen{
                 if(nbrSolution == 1) {
                     if (n >= 0) System.arraycopy(noeudCurrent.cases, 0, problem.cases, 0, n);
                 }
+                return;
             }
             else {
                 //NeudCurrent
@@ -267,7 +274,9 @@ class noeudEtoile{
         this.row = n.row;
         this.cases = new int[n.cases.length];
         this.poid = n.poid;
-        System.arraycopy(n.cases, 0, this.cases, 0, n.cases.length);
+        for(int i=0;i<=n.row;i++){
+            this.cases[i] = n.cases[i];
+        }
     }
     public noeudEtoile(int n,int row,int col, int poid){
         this.row = row;
@@ -282,7 +291,7 @@ class AEtoile{
         LinkedList<noeudEtoile> ListsOverts;
     public AEtoile(int n) {
         cases = new int[n];
-        ListsOverts = new LinkedList<noeudEtoile>();
+        ListsOverts = new LinkedList<>();
     }
     void AppliquerA(int n, int[][] h,Problem problem){
         int row = 0,i=0;
@@ -300,19 +309,19 @@ class AEtoile{
                 if(nbrSolution == 1) {
                     if (n >= 0) System.arraycopy(noeudCurrent.cases, 0, problem.cases, 0, n);
                 }
+                return;
             }
             else {
                 //NeudCurrent
                 row = noeudCurrent.row + 1;
                 tempList = casePossible(row, noeudCurrent);
                 for (Integer integer : tempList) {
-                    i=0;
                     for(i=0; i<row;i++){
                         tempNeud.cases[i] = noeudCurrent.cases[i];
                     }
                     tempNeud.row = noeudCurrent.row + 1;
                     tempNeud.cases[row] = integer;
-                    tempNeud.poid = h[row][integer] + row;
+                    tempNeud.poid = h[tempNeud.row][integer] + tempNeud.row;
                     addNeudToList(new noeudEtoile(tempNeud));
                 }
             }
@@ -384,6 +393,14 @@ class AEtoile{
                 if(this.ListsOverts.get(i).poid > n.poid){
                     this.ListsOverts.add(i,n);
                     return;
+                }
+                else{
+                    if(this.ListsOverts.get(i).poid == n.poid){
+                        if(this.ListsOverts.get(i).row < n.row){
+                            this.ListsOverts.add(i,n);
+                            return;
+                        }
+                    }
                 }
             }
             this.ListsOverts.add(n);
