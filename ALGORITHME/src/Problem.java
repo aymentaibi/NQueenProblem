@@ -289,6 +289,7 @@ class AEtoile{
         int nbrSolution = 0;
         int[] cases;
         LinkedList<noeudEtoile> ListsOverts;
+
     public AEtoile(int n) {
         cases = new int[n];
         ListsOverts = new LinkedList<>();
@@ -296,7 +297,7 @@ class AEtoile{
     void AppliquerA(int n, int[][] h,Problem problem){
         int row = 0,i=0;
         noeudEtoile noeudCurrent;
-        noeudEtoile tempNeud = new noeudEtoile(n,row,0);
+        noeudEtoile tempNeud;
         List<Integer> tempList;
         tempList = casePossible(row);
         for (Integer integer : tempList) {
@@ -316,12 +317,13 @@ class AEtoile{
                 row = noeudCurrent.row + 1;
                 tempList = casePossible(row, noeudCurrent);
                 for (Integer integer : tempList) {
-                    for(i=0; i<row;i++){
-                        tempNeud.cases[i] = noeudCurrent.cases[i];
-                    }
+                    tempNeud = new noeudEtoile(noeudCurrent);
+                    //for(i=0; i<row;i++){
+                    //    tempNeud.cases[i] = noeudCurrent.cases[i];
+                    //}
                     tempNeud.row = noeudCurrent.row + 1;
-                    tempNeud.cases[row] = integer;
-                    tempNeud.poid = h[tempNeud.row][integer] + tempNeud.row;
+                    tempNeud.cases[noeudCurrent.row + 1] = integer;
+                    tempNeud.poid = h[row][integer] + noeudCurrent.row + 1;
                     addNeudToList(new noeudEtoile(tempNeud));
                 }
             }
