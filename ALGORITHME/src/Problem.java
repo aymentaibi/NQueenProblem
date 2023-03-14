@@ -47,8 +47,14 @@ public class Problem {
     }
     void SolveByDFS(){
         dfsQueen dfsQueen= new dfsQueen(this.cases.length);
+        Instant start = Instant.now();
         dfsQueen.DFS(0,this,this.cases.length);
+        Instant end = Instant.now();
+        Duration timeElapsed = Duration.between(start, end);
+        System.out.println("Time taken DFS: "+ timeElapsed.toMillis() +" milliseconds");
         System.out.println("Le nombre de solution =" +dfsQueen.nbrSolution);
+        System.out.println("Le nombre de Noeud Generer =" +dfsQueen.nbrN);
+        System.out.println("Le nombre de Noeud Generer avant La SOlution =" +dfsQueen.nbrNF);
         for(int i=0 ; i<this.cases.length;i++){
             System.out.println("La ligne:" + i + " La Column:" + this.cases[i]);
         }
@@ -61,6 +67,8 @@ public class Problem {
         Duration timeElapsed = Duration.between(start, end);
         System.out.println("Time taken BFS: "+ timeElapsed.toMillis() +" milliseconds");
         System.out.println("Le nombre de solution =" +bfsQueen.nbrSolution);
+        System.out.println("Le nombre de Noeud Generer =" +bfsQueen.nbrG);
+        System.out.println("Le nombre de Noeud Generer avant La SOlution =" +bfsQueen.NBo);
         for(int i=0 ; i<this.cases.length;i++){
             System.out.println("La ligne:" + i + " La Column:" + this.cases[i]);
         }
@@ -76,6 +84,8 @@ public class Problem {
         System.out.println("************END**********");
         System.out.println("Time taken HEURSTIQUE: "+ timeElapsed.toMillis() +" milliseconds");
         System.out.println("Le nombre de solution =" +AEtoile.nbrSolution);
+        System.out.println("Le nombre des Neud generer =" +AEtoile.nbrG);
+        System.out.println("Le nombre des Neud generer Avant La premier Solution =" +AEtoile.NBo);
         for(int i=0 ; i<this.cases.length;i++){
             System.out.println("La ligne:" + i + " La Column:" + this.cases[i]);
         }
@@ -85,14 +95,20 @@ class dfsQueen{
     List<Integer> tempList;
     int[] cases;
     int nbrSolution = 0;
+    int nbrN = 0,nbrNF =0;
     public dfsQueen(int n) {
         cases = new int[n];
+        for(int i= 0;i<n;i++){
+            this.cases[i] = -1;
+        }
     }
     void DFS(int row,Problem prblm,int n){
+        nbrN++;
         if(row == n){
             nbrSolution++;
             if(nbrSolution == 1) {
                 if (n >= 0) System.arraycopy(this.cases, 0, prblm.cases, 0, n);
+                nbrNF = nbrN;
             }
         }
         else{
@@ -105,31 +121,32 @@ class dfsQueen{
         }
     }
     List<Integer> casePossible(int row){
-        boolean isSafe = true;
+        boolean isSafe;
+        int diag;
         List<Integer> casePosiible = new ArrayList<Integer>();
-        for(int col =0;col<this.cases.length; col++){
+        for(int j=0;j<this.cases.length;j++) {
             isSafe = true;
-            // Vérifier la diagonale sup adr
-            for (int i = row -1 , j = col+1; i >= 0 && j < this.cases.length && isSafe; i--, j++) {
-                if (this.cases[i] == j) {
-                    isSafe = false;
+            for (int i = 0; i < row && isSafe; i++) {
+                diag = (row-i)+j; // digonalSuppAdd
+                if(diag<this.cases.length){
+                    if(this.cases[i] == diag){
+                        isSafe=false;
+                        continue;
+                    }
                 }
-            }
-            // Vérifier la diagonale sup fauch
-
-            for (int i = row -1 , j = col-1; i >= 0 && j >= 0 && isSafe; i--, j--) {
-                if (this.cases[i] == j) {
-                    isSafe = false;
+                diag = j - (row-i); // digonalSuppAgauche
+                if(diag>=0){
+                    if(this.cases[i] == diag) {
+                        isSafe = false;
+                        continue;
+                    }
                 }
+                // VerifierColumn
+                if(this.cases[i] == j) isSafe = false;
             }
-            // Vérifier la column
-
-            for(int i = 0;i<row && isSafe;i++){
-                if(this.cases[i] == col) isSafe = false;
-            }
-            //put in the liste
-            if(isSafe) casePosiible.add(col);
+            if(isSafe) casePosiible.add(j);
         }
+
         return casePosiible;
     }
 }
@@ -143,31 +160,66 @@ class Heursitique_1{
             }
         }
     }
+    static int Heurstique_2(int[] inst,int row,int column){
+        int diag;
+        boolean isSafe;
+        int count =0;
+        for(int row_i=row+1;row_i < inst.length; row_i++) {
+            for (int j = 0; j < inst.length; j++) {
+                isSafe = true;
+                for (int i = 0; i < row && isSafe; i++) {
+                    diag = (row - i) + j; // digonalSuppAdd
+                    if (diag < inst.length && diag >= 0) {
+                        if (inst[i] == diag) {
+                            isSafe = false;
+                            continue;
+                        }
+                    }
+                    diag = j - (row - i); // digonalSuppAgauche
+                    if (diag < inst.length && diag >= 0) {
+                        if (inst[i] == diag) {
+                            isSafe = false;
+                            continue;
+                        }
+                    }
+                    // VerifierColumn
+                    if (inst[i] == j) isSafe = false;
+                }
+                if (isSafe) count++;
+            }
+        }
+        return count;
+    }
 }
 class bfsQueen{
     int nbrSolution = 0;
     int[] cases;
+    int nbrG = 0,NBo=0;
     public bfsQueen(int n) {
         cases = new int[n];
+        for(int i= 0;i<n;i++){
+            this.cases[i] = -1;
+        }
     }
     void BFS(Problem problem, int n){
-        int row = 0,i=0;
+        int row = 0,i;
         noeud noeudCurrent;
         noeud tempNeud = new noeud(n,row);
         LinkedList<noeud> ListsOverts = new LinkedList<noeud>();
         List<Integer> tempList;
-        tempList = casePossible(row);
-        for (Integer integer : tempList) {
-            ListsOverts.add(new noeud(n,0,integer,0));
+        //First itération tous Les Coluns sont possible
+        for (i=0;i<n;i++) {
+            ListsOverts.add(new noeud(n,0,i,0));
         }
         while(ListsOverts.size() != 0){
+            nbrG++;
             noeudCurrent = ListsOverts.removeFirst();
             if(noeudCurrent.row == n-1){
                 nbrSolution++;
                 if(nbrSolution == 1) {
-                    if (n >= 0) System.arraycopy(noeudCurrent.cases, 0, problem.cases, 0, n);
+                     System.arraycopy(noeudCurrent.cases, 0, problem.cases, 0, n);
+                    NBo = nbrG;
                 }
-                return;
             }
             else {
                 //NeudCurrent
@@ -186,60 +238,34 @@ class bfsQueen{
         }
     }
 
-    List<Integer> casePossible(int row){
-        boolean isSafe = true;
-        List<Integer> casePosiible = new ArrayList<Integer>();
-        for(int col =0;col<this.cases.length; col++){
-            isSafe = true;
-            // Vérifier la diagonale sup adr
-            for (int i = row -1 , j = col+1; i >= 0 && j < this.cases.length && isSafe; i--, j++) {
-                if (this.cases[i] == j) {
-                    isSafe = false;
-                }
-            }
-            // Vérifier la diagonale sup fauch
 
-            for (int i = row -1 , j = col-1; i >= 0 && j >= 0 && isSafe; i--, j--) {
-                if (this.cases[i] == j) {
-                    isSafe = false;
-                }
-            }
-            // Vérifier la column
-
-            for(int i = 0;i<row && isSafe;i++){
-                if(this.cases[i] == col) isSafe = false;
-            }
-            //put in the liste
-            if(isSafe) casePosiible.add(col);
-        }
-        return casePosiible;
-    }
     List<Integer> casePossible(int row, noeud inst){
-        boolean isSafe = true;
+        boolean isSafe;
+        int diag;
         List<Integer> casePosiible = new ArrayList<Integer>();
-        for(int col =0;col<inst.cases.length; col++){
+        for(int j=0;j<inst.cases.length;j++) {
             isSafe = true;
-            // Vérifier la diagonale sup adr
-            for (int i = row -1 , j = col+1; i >= 0 && j < inst.cases.length && isSafe; i--, j++) {
-                if (inst.cases[i] == j) {
-                    isSafe = false;
+            for (int i = 0; i < row && isSafe; i++) {
+                diag = (row-i)+j; // digonalSuppAdd
+                if(diag<inst.cases.length){
+                    if(inst.cases[i] == diag){
+                        isSafe=false;
+                        continue;
+                    }
                 }
-            }
-            // Vérifier la diagonale sup fauch
-
-            for (int i = row -1 , j = col-1; i >= 0 && j >= 0 && isSafe; i--, j--) {
-                if (inst.cases[i] == j) {
-                    isSafe = false;
+                diag = j - (row-i); // digonalSuppAgauche
+                if(diag>=0){
+                    if(inst.cases[i] == diag) {
+                        isSafe = false;
+                        continue;
+                    }
                 }
+                // VerifierColumn
+                if(inst.cases[i] == j) isSafe = false;
             }
-            // Vérifier la column
-
-            for(int i = 0;i<row && isSafe;i++){
-                if(inst.cases[i] == col) isSafe = false;
-            }
-            //put in the liste
-            if(isSafe) casePosiible.add(col);
+            if(isSafe) casePosiible.add(j);
         }
+
         return casePosiible;
     }
 }
@@ -248,6 +274,9 @@ class noeud{
     int row;
     public noeud(int n,int row) {
         this.cases = new int[n];
+        for(int i= 0;i<n;i++){
+            this.cases[i] = -1;
+        }
         this.row = row;
     }
     public noeud(noeud n){
@@ -256,7 +285,11 @@ class noeud{
         System.arraycopy(n.cases, 0, this.cases, 0, n.cases.length);
     }
     public noeud(int n,int row,int colm,int row2) {
+
         this.cases = new int[n];
+        for(int i= 0;i<n;i++){
+            this.cases[i] = -1;
+        }
         this.cases[row] = colm;
         this.row = row2;
     }
@@ -265,30 +298,30 @@ class noeudEtoile{
     int[] cases;
     int row;
     int poid;
-    public noeudEtoile(int n,int row,int poid) {
-        this.cases = new int[n];
-        this.row = row;
-        this.poid = poid;
-    }
     public noeudEtoile(noeudEtoile n){
         this.row = n.row;
         this.cases = new int[n.cases.length];
-        this.poid = n.poid;
-        for(int i=0;i<=n.row;i++){
-            this.cases[i] = n.cases[i];
+        for(int i= 0;i<n.cases.length;i++){
+            this.cases[i] = -1;
         }
+        this.poid = n.poid;
+        if (n.row + 1 >= 0) System.arraycopy(n.cases, 0, this.cases, 0, n.row + 1);
     }
     public noeudEtoile(int n,int row,int col, int poid){
         this.row = row;
         this.poid = poid+row;
         this.cases = new int[n];
+        for(int i= 0;i<n;i++){
+            this.cases[i] = -1;
+        }
         this.cases[row] = col;
     }
 }
 class AEtoile{
-        int nbrSolution = 0;
-        int[] cases;
-        LinkedList<noeudEtoile> ListsOverts;
+    int nbrSolution = 0;
+    int[] cases;
+    int nbrG = 0,NBo=0;
+    LinkedList<noeudEtoile> ListsOverts;
 
     public AEtoile(int n) {
         cases = new int[n];
@@ -299,18 +332,19 @@ class AEtoile{
         noeudEtoile noeudCurrent;
         noeudEtoile tempNeud;
         List<Integer> tempList;
-        tempList = casePossible(row);
-        for (Integer integer : tempList) {
-            addNeudToList(new noeudEtoile(n,0,integer,h[0][integer]));
+        for (i=0;i<n;i++) {
+            addNeudToList(new noeudEtoile(n,0,i,h[0][i]));
         }
         while(ListsOverts.size() != 0){
+            nbrG++;
             noeudCurrent = ListsOverts.removeFirst();
             if(noeudCurrent.row == n-1){
                 nbrSolution++;
                 if(nbrSolution == 1) {
                     if (n >= 0) System.arraycopy(noeudCurrent.cases, 0, problem.cases, 0, n);
+                    NBo = nbrG;
+
                 }
-                return;
             }
             else {
                 //NeudCurrent
@@ -323,67 +357,41 @@ class AEtoile{
                     //}
                     tempNeud.row = noeudCurrent.row + 1;
                     tempNeud.cases[noeudCurrent.row + 1] = integer;
-                    tempNeud.poid = h[row][integer] + noeudCurrent.row + 1;
-                    addNeudToList(new noeudEtoile(tempNeud));
+                    //tempNeud.poid = h[row][integer] + (n-noeudCurrent.row - 1);
+                    tempNeud.poid = Heursitique_1.Heurstique_2(noeudCurrent.cases, tempNeud.row,integer) + (noeudCurrent.row);
+                    addNeudToList_2(new noeudEtoile(tempNeud));
                 }
             }
         }
 
     }
     List<Integer> casePossible(int row, noeudEtoile inst){
-        boolean isSafe = true;
+        boolean isSafe;
+        int diag;
         List<Integer> casePosiible = new ArrayList<Integer>();
-        for(int col =0;col<inst.cases.length; col++){
+        for(int j=0;j<inst.cases.length;j++) {
             isSafe = true;
-            // Vérifier la diagonale sup adr
-            for (int i = row -1 , j = col+1; i >= 0 && j < inst.cases.length && isSafe; i--, j++) {
-                if (inst.cases[i] == j) {
-                    isSafe = false;
+            for (int i = 0; i < row && isSafe; i++) {
+                diag = (row-i)+j; // digonalSuppAdd
+                if(diag<inst.cases.length){
+                    if(inst.cases[i] == diag){
+                        isSafe=false;
+                        continue;
+                    }
                 }
-            }
-            // Vérifier la diagonale sup fauch
-
-            for (int i = row -1 , j = col-1; i >= 0 && j >= 0 && isSafe; i--, j--) {
-                if (inst.cases[i] == j) {
-                    isSafe = false;
+                diag = j - (row-i); // digonalSuppAgauche
+                if(diag>=0){
+                    if(inst.cases[i] == diag) {
+                        isSafe = false;
+                        continue;
+                    }
                 }
+                // VerifierColumn
+                if(inst.cases[i] == j) isSafe = false;
             }
-            // Vérifier la column
-
-            for(int i = 0;i<row && isSafe;i++){
-                if(inst.cases[i] == col) isSafe = false;
-            }
-            //put in the liste
-            if(isSafe) casePosiible.add(col);
+            if(isSafe) casePosiible.add(j);
         }
-        return casePosiible;
-    }
-    List<Integer> casePossible(int row){
-        boolean isSafe = true;
-        List<Integer> casePosiible = new ArrayList<Integer>();
-        for(int col =0;col<this.cases.length; col++){
-            isSafe = true;
-            // Vérifier la diagonale sup adr
-            for (int i = row -1 , j = col+1; i >= 0 && j < this.cases.length && isSafe; i--, j++) {
-                if (this.cases[i] == j) {
-                    isSafe = false;
-                }
-            }
-            // Vérifier la diagonale sup fauch
 
-            for (int i = row -1 , j = col-1; i >= 0 && j >= 0 && isSafe; i--, j--) {
-                if (this.cases[i] == j) {
-                    isSafe = false;
-                }
-            }
-            // Vérifier la column
-
-            for(int i = 0;i<row && isSafe;i++){
-                if(this.cases[i] == col) isSafe = false;
-            }
-            //put in the liste
-            if(isSafe) casePosiible.add(col);
-        }
         return casePosiible;
     }
     void addNeudToList(noeudEtoile n){
@@ -393,6 +401,28 @@ class AEtoile{
         else{
             for(int i=0;i<this.ListsOverts.size();i++){
                 if(this.ListsOverts.get(i).poid > n.poid){
+                    this.ListsOverts.add(i,n);
+                    return;
+                }
+                else{
+                    if(this.ListsOverts.get(i).poid == n.poid){
+                        if(this.ListsOverts.get(i).row < n.row){
+                            this.ListsOverts.add(i,n);
+                            return;
+                        }
+                    }
+                }
+            }
+            this.ListsOverts.add(n);
+        }
+    }
+    void addNeudToList_2(noeudEtoile n){
+        if(this.ListsOverts.size() == 0){
+            this.ListsOverts.add(n);
+        }
+        else{
+            for(int i=0;i<this.ListsOverts.size();i++){
+                if(this.ListsOverts.get(i).poid < n.poid){
                     this.ListsOverts.add(i,n);
                     return;
                 }
