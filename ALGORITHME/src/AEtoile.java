@@ -21,7 +21,7 @@ class AEtoile{
         noeudEtoile tempNeud;
         List<Integer> tempList;
         for (i=0;i<n;i++) {
-            addNeudToList(new noeudEtoile(n,0,i,Heursitique_1.Heurstique_2(problem.cases, 0,i)+n));
+            addNeudToList_2(new noeudEtoile(n,0,i,Heursitique_1.Heurstique_2(problem.cases, 0,i)+n-1));
             nbrNGenerer++;
         }
         while(ListsOverts.size() != 0){
@@ -46,8 +46,8 @@ class AEtoile{
                     tempNeud.row = noeudCurrent.row + 1;
                     tempNeud.cases[noeudCurrent.row + 1] = integer;
                     //tempNeud.poid = h[row][integer] + (n-noeudCurrent.row - 1);
-                    tempNeud.poid = Heursitique_1.Heurstique_2(noeudCurrent.cases, tempNeud.row,integer) + (n-tempNeud.row)-2 ;
-                    addNeudToList(new noeudEtoile(tempNeud));
+                    tempNeud.poid = Heursitique_1.Heurstique_2(noeudCurrent.cases, tempNeud.row,integer) + (n-tempNeud.row-1) ;
+                    addNeudToList_2(new noeudEtoile(tempNeud));
                     nbrNGenerer++;
                 }
             }
@@ -63,7 +63,7 @@ class AEtoile{
         noeudEtoile tempNeud;
         List<Integer> tempList;
         for (i=0;i<n;i++) {
-            addNeudToList(new noeudEtoile(n,0,i,n - h[0][i]));
+            addNeudToList_2(new noeudEtoile(n,0,i,n + h[0][i]));
             nbrNGenerer++;
         }
         while(ListsOverts.size() != 0){
@@ -87,7 +87,7 @@ class AEtoile{
                     //}
                     tempNeud.row = noeudCurrent.row + 1;
                     tempNeud.cases[noeudCurrent.row + 1] = integer;
-                    tempNeud.poid = h[row][integer] + (n-noeudCurrent.row);
+                    tempNeud.poid = h[row][integer] + (n-tempNeud.row);
                     addNeudToList_2(new noeudEtoile(tempNeud));
                     nbrNGenerer++;
                 }
