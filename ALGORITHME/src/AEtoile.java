@@ -87,8 +87,8 @@ class AEtoile{
                     //}
                     tempNeud.row = noeudCurrent.row + 1;
                     tempNeud.cases[noeudCurrent.row + 1] = integer;
-                    tempNeud.poid = h[row][integer] + (n-noeudCurrent.row - 1);
-                    addNeudToList(new noeudEtoile(tempNeud));
+                    tempNeud.poid = h[row][integer] + (n-noeudCurrent.row);
+                    addNeudToList_2(new noeudEtoile(tempNeud));
                     nbrNGenerer++;
                 }
             }
@@ -125,55 +125,35 @@ class AEtoile{
         return casePosiible;
     }
     void addNeudToList(noeudEtoile n){
-
+        /*
         int i = 0;
         while(i<this.ListsOverts.size() && this.ListsOverts.get(i).poid < n.poid) i++;
         this.ListsOverts.add(i,n);
-        /**
-        if(this.ListsOverts.size() == 0){
-            this.ListsOverts.add(n);
-        }
-        else{
-            for(int i=0;i<this.ListsOverts.size();i++){
-                if(this.ListsOverts.get(i).poid > n.poid){
-                    this.ListsOverts.add(i,n);
-                    return;
-                }
-                else{
-                    if(this.ListsOverts.get(i).poid == n.poid){
-                        if(this.ListsOverts.get(i).row < n.row){
-                            this.ListsOverts.add(i,n);
-                            return;
+        */
+            if (this.ListsOverts.size() == 0) {
+                this.ListsOverts.add(n);
+            } else {
+                for (int i = 0; i < this.ListsOverts.size(); i++) {
+                    if (this.ListsOverts.get(i).poid > n.poid) {
+                        this.ListsOverts.add(i, n);
+                        return;
+                    } else {
+                        if (this.ListsOverts.get(i).poid == n.poid) {
+                            if (this.ListsOverts.get(i).row < n.row) {
+                                this.ListsOverts.add(i, n);
+                                return;
+                            }
                         }
-
                     }
                 }
+                this.ListsOverts.add(n);
             }
-            this.ListsOverts.add(n);
-        }
-        */
+
     }
 
     void addNeudToList_2(noeudEtoile n){
-        if(this.ListsOverts.size() == 0){
-            this.ListsOverts.add(n);
-        }
-        else{
-            for(int i=0;i<this.ListsOverts.size();i++){
-                if(this.ListsOverts.get(i).poid < n.poid){
-                    this.ListsOverts.add(i,n);
-                    return;
-                }
-                else{
-                    if(this.ListsOverts.get(i).poid == n.poid){
-                        if(this.ListsOverts.get(i).row < n.row){
-                            this.ListsOverts.add(i,n);
-                            return;
-                        }
-                    }
-                }
-            }
-            this.ListsOverts.add(n);
-        }
+        int i = 0;
+        while ( i < this.ListsOverts.size() && this.ListsOverts.get(i).poid < n.poid ) i++;
+        this.ListsOverts.add(i, n);
     }
 }
