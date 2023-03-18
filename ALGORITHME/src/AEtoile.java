@@ -1,11 +1,12 @@
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 class AEtoile{
     int[] cases;
-    int nbrSolution = 0;
-    int nbrNExploiter = 0, nbrNGenerer =0;
+    long nbrSolution = 0;
+    long nbrNExploiter = 0, nbrNGenerer =0;
     LinkedList<noeudEtoile> ListsOverts;
 
     public AEtoile(int n) {

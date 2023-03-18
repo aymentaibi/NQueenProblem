@@ -1,0 +1,283 @@
+Algo H1 sur n=8
+Time taken HEURSTIQUE: 1 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =128
+Le nombre de Noeud Generer  =140
+|7|3|0|2|5|1|6|4
+Algo H2 sur n=8
+Time taken HEURSTIQUE: 0 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =75
+Le nombre de Noeud Generer  =86
+|7|3|0|2|5|1|6|4
+Algo DFS sur n=8
+Time taken DFS: 1 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =113
+Le nombre de Noeud Generer  =124
+|7|3|0|2|5|1|6|4
+Algo H1 sur n=10
+Time taken HEURSTIQUE: 0 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =162
+Le nombre de Noeud Generer  =184
+|9|0|5|3|1|7|2|8|6|4
+Algo H2 sur n=10
+Time taken HEURSTIQUE: 0 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =98
+Le nombre de Noeud Generer  =121
+|9|7|4|2|0|5|1|8|6|3
+Algo DFS sur n=10
+Time taken DFS: 0 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =102
+Le nombre de Noeud Generer  =124
+|9|7|4|2|0|5|1|8|6|3
+Algo H1 sur n=12
+Time taken HEURSTIQUE: 0 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =148
+Le nombre de Noeud Generer  =183
+|11|0|10|7|4|1|8|2|9|6|3|5
+Algo H2 sur n=12
+Time taken HEURSTIQUE: 1 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =325
+Le nombre de Noeud Generer  =358
+|11|9|7|4|2|0|6|1|10|5|3|8
+Algo DFS sur n=12
+Time taken DFS: 0 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =261
+Le nombre de Noeud Generer  =295
+|11|9|7|4|2|0|6|1|10|5|3|8
+Algo H1 sur n=14
+Time taken HEURSTIQUE: 6 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =3738
+Le nombre de Noeud Generer  =3787
+|13|0|12|7|5|3|1|10|8|11|2|4|6|9
+Algo H2 sur n=14
+Time taken HEURSTIQUE: 8 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =1915
+Le nombre de Noeud Generer  =1958
+|13|11|9|7|2|4|1|10|0|5|12|8|6|3
+Algo DFS sur n=14
+Time taken DFS: 1 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =1899
+Le nombre de Noeud Generer  =1944
+|13|11|9|7|2|4|1|10|0|5|12|8|6|3
+Algo H1 sur n=16
+Time taken HEURSTIQUE: 14 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =19098
+Le nombre de Noeud Generer  =19155
+|15|0|14|11|1|5|7|12|3|13|2|9|6|4|10|8
+Algo H2 sur n=16
+Time taken HEURSTIQUE: 27 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =14759
+Le nombre de Noeud Generer  =14814
+|15|13|11|14|3|7|2|4|1|10|0|9|12|5|8|6
+Algo DFS sur n=16
+Time taken DFS: 11 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =10052
+Le nombre de Noeud Generer  =10112
+|15|13|11|14|3|7|2|4|1|10|0|9|12|5|8|6
+Algo H1 sur n=18
+Time taken HEURSTIQUE: 19 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =33808
+Le nombre de Noeud Generer  =33891
+|17|0|16|1|12|10|6|3|14|2|4|13|15|8|11|5|7|9
+Algo H2 sur n=18
+Time taken HEURSTIQUE: 84 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =36128
+Le nombre de Noeud Generer  =36205
+|17|15|13|16|10|3|6|2|5|1|12|0|11|14|7|9|4|8
+Algo DFS sur n=18
+Time taken DFS: 15 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =41299
+Le nombre de Noeud Generer  =41377
+|17|15|13|16|10|3|6|2|5|1|12|0|11|14|7|9|4|8
+Algo H1 sur n=20
+Time taken HEURSTIQUE: 26 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =45991
+Le nombre de Noeud Generer  =46095
+|19|0|18|1|17|13|3|7|9|4|14|5|15|2|16|11|6|8|10|12
+Algo H2 sur n=20
+Time taken HEURSTIQUE: 22 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =6725
+Le nombre de Noeud Generer  =6824
+|19|17|15|18|16|1|7|5|2|0|12|4|11|3|14|10|13|9|6|8
+Algo DFS sur n=20
+Time taken DFS: 57 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =199635
+Le nombre de Noeud Generer  =199733
+|19|17|15|18|16|7|5|8|2|0|3|11|4|1|12|10|13|6|14|9
+Algo H1 sur n=22
+Time taken HEURSTIQUE: 64 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =157919
+Le nombre de Noeud Generer  =158034
+|21|0|20|1|19|2|14|7|10|3|15|17|4|6|18|16|11|13|8|5|9|12
+Algo H2 sur n=22
+Time taken HEURSTIQUE: 137 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =49922
+Le nombre de Noeud Generer  =50041
+|21|19|17|20|18|1|9|7|5|3|0|15|4|12|16|13|2|10|6|14|11|8
+Algo DFS sur n=22
+Time taken DFS: 660 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =1737188
+Le nombre de Noeud Generer  =1737308
+|21|19|17|20|18|12|8|5|2|9|3|0|4|14|1|10|13|16|6|15|11|7
+Algo H1 sur n=24
+Time taken HEURSTIQUE: 158 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =479366
+Le nombre de Noeud Generer  =479512
+|23|0|22|1|21|2|20|14|9|13|4|7|17|3|5|18|16|19|10|12|15|6|8|11
+Algo H2 sur n=24
+Time taken HEURSTIQUE: 123 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =45583
+Le nombre de Noeud Generer  =45728
+|23|21|19|22|20|1|10|6|11|9|2|0|17|4|12|16|18|3|15|13|8|14|5|7
+Algo DFS sur n=24
+Time taken DFS: 119 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =411608
+Le nombre de Noeud Generer  =411755
+|23|21|19|22|20|15|13|10|6|2|5|1|4|0|14|3|18|16|12|8|11|17|7|9
+Algo H1 sur n=26
+Time taken HEURSTIQUE: 260 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =803183
+Le nombre de Noeud Generer  =803347
+|25|0|24|1|23|2|22|3|15|10|12|19|6|8|17|20|4|21|18|5|13|11|7|14|16|9
+Algo H2 sur n=26
+Time taken HEURSTIQUE: 1069 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =331659
+Le nombre de Noeud Generer  =331835
+|25|23|21|24|22|1|11|15|20|4|10|5|9|2|0|3|17|19|16|18|12|8|13|7|14|6
+Algo DFS sur n=26
+Time taken DFS: 131 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =397699
+Le nombre de Noeud Generer  =397880
+|25|23|21|24|22|17|15|13|11|5|3|1|6|4|2|0|16|19|10|14|18|20|8|12|7|9
+Algo H1 sur n=28
+Time taken HEURSTIQUE: 3290 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =7676243
+Le nombre de Noeud Generer  =7676439
+|27|0|26|1|25|2|24|3|18|16|14|20|7|21|6|8|5|22|4|19|23|11|13|17|9|12|10|15
+Algo H2 sur n=28
+Time taken HEURSTIQUE: 713 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =148036
+Le nombre de Noeud Generer  =148238
+|27|25|23|26|24|1|12|2|22|11|7|20|3|6|8|19|21|18|5|17|4|0|10|15|9|14|16|13
+Algo DFS sur n=28
+Time taken DFS: 1255 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =3006298
+Le nombre de Noeud Generer  =3006508
+|27|25|23|26|24|19|17|15|13|11|5|3|6|0|2|4|1|21|16|12|10|20|18|14|8|22|7|9
+Algo H1 sur n=30
+Time taken HEURSTIQUE: 9013 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =19345427
+Le nombre de Noeud Generer  =19345659
+|29|0|28|1|27|2|26|3|25|19|15|13|7|22|8|23|5|20|9|4|6|21|12|24|16|18|10|14|11|17
+Algo H2 sur n=30
+Time taken HEURSTIQUE: 12010 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =2804337
+Le nombre de Noeud Generer  =2804567
+|29|27|25|28|26|1|13|19|24|14|23|6|10|5|2|0|18|3|7|22|4|21|16|20|15|12|9|17|8|11
+Algo DFS sur n=30
+Time taken DFS: 24148 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =56429619
+Le nombre de Noeud Generer  =56429852
+|29|27|25|28|26|21|19|17|15|23|7|4|2|5|8|6|0|3|1|14|18|20|22|24|12|10|13|16|9|11
+Algo H1 sur n=32
+Time taken HEURSTIQUE: 231851 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =505161362
+Le nombre de Noeud Generer  =505161639
+|31|0|30|1|29|2|28|3|27|21|26|16|12|15|9|7|4|8|24|22|6|25|23|17|5|14|11|20|10|19|13|18
+Algo H2 sur n=32
+Time taken HEURSTIQUE: 6494 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =1223072
+Le nombre de Noeud Generer  =1223333
+|31|29|27|30|28|1|14|2|26|13|25|4|12|15|11|3|7|23|19|22|6|0|5|21|18|24|10|16|20|9|17|8
+Algo DFS sur n=32
+Time taken DFS: 43479 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =87491425
+Le nombre de Noeud Generer  =87491694
+|31|29|27|30|28|23|21|19|17|26|14|8|6|2|7|1|4|0|5|3|16|13|22|24|15|20|11|25|18|9|12|10
+Algo H1 sur n=34
+Time taken HEURSTIQUE: 492446 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =1036964750
+Le nombre de Noeud Generer  =1036965065
+|33|0|32|1|31|2|30|3|29|4|22|20|18|15|27|8|10|7|9|6|24|28|25|23|5|26|14|12|17|21|13|11|16|19
+Algo H2 sur n=34
+Time taken HEURSTIQUE: 114290 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =17636575
+Le nombre de Noeud Generer  =17636869
+|33|31|29|32|30|1|15|21|28|16|27|19|17|11|5|3|6|0|2|8|26|23|4|24|18|25|13|22|20|14|10|7|9|12
+Algo DFS sur n=34
+Time taken DFS: 1236312 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =2294605284
+Le nombre de Noeud Generer  =2294605599
+|33|31|29|32|30|25|23|21|19|28|16|14|8|6|3|1|7|5|0|2|4|22|24|27|18|15|26|12|20|9|17|10|13|11
+Algo H1 sur n=36
+Time taken HEURSTIQUE: 1165966 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =2353587878
+Le nombre de Noeud Generer  =2353588297
+|35|0|34|1|33|2|32|3|31|4|30|23|20|18|16|7|10|8|5|9|26|24|29|6|28|25|27|15|21|14|11|17|12|22|13|19
+Algo H2 sur n=36
+Time taken HEURSTIQUE: 20514 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =3286229
+Le nombre de Noeud Generer  =3286556
+|35|33|31|34|32|1|16|2|30|15|29|4|28|17|27|14|10|3|7|9|25|23|5|0|8|6|26|24|19|21|12|18|11|13|22|20
+Algo DFS sur n=36
+Time taken DFS: 12891018 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =24531506344
+Le nombre de Noeud Generer  =24531506680
+|35|33|31|34|32|27|25|23|21|30|28|14|9|4|6|3|12|7|1|8|2|5|22|0|19|24|20|29|26|16|11|17|10|18|13|15
+Algo H1 sur n=38
+Time taken HEURSTIQUE: 1964914 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =3712171825
+Le nombre de Noeud Generer  =3712172190
+|37|0|36|1|35|2|34|3|33|4|32|5|24|22|20|18|8|27|9|12|10|25|6|31|29|7|26|28|30|16|13|19|17|14|23|21|15|11
+Algo H2 sur n=38
+Time taken HEURSTIQUE: 1189832 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =161447217
+Le nombre de Noeud Generer  =161447587
+|37|35|33|36|34|1|17|25|32|24|31|23|19|29|15|7|3|11|6|2|0|5|8|4|30|27|21|16|28|26|20|22|14|18|10|13|9|12
+Algo DFS sur n=38

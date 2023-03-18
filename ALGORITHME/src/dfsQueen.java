@@ -4,8 +4,8 @@ import java.util.List;
 
 public class dfsQueen{
     int[] cases;
-    int nbrSolution = 0;
-    int nbrNGenerer = 0,nbrNExploiter =0;
+    long nbrSolution = 0;
+    long nbrNGenerer = 0,nbrNExploiter =0;
     public dfsQueen(int n) {
         cases = new int[n];
         for(int i= 0;i<n;i++){

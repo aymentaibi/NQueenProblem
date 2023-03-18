@@ -1,0 +1,25 @@
+Algo BFS sur n=8
+Time taken BFS: 4 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =1965
+Le nombre de Noeud Generer  =2056
+|0|4|7|5|2|6|1|3
+Algo BFS sur n=10
+Time taken BFS: 14 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =34815
+Le nombre de Noeud Generer  =35538
+|0|2|5|7|9|4|8|1|3|6
+Algo BFS sur n=12
+Time taken BFS: 274 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =841989
+Le nombre de Noeud Generer  =856188
+|0|2|4|7|9|11|5|10|1|6|8|3
+Algo BFS sur n=14
+Time taken BFS: 12977 milliseconds
+Le nombre de solution =1
+Le nombre de Noeud Exloité =26992957
+Le nombre de Noeud Generer  =27358552
+|0|2|4|6|11|9|12|3|13|8|1|5|7|10
+Algo BFS sur n=16

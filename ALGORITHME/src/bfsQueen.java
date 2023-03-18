@@ -5,8 +5,8 @@ import java.util.List;
 class bfsQueen{
 
     int[] cases;
-    int nbrSolution = 0;
-    int nbrNExploiter = 0, nbrNGenerer =0;
+    long nbrSolution = 0;
+    long nbrNExploiter = 0, nbrNGenerer =0;
     public bfsQueen(int n) {
         cases = new int[n];
         for(int i= 0;i<n;i++){
