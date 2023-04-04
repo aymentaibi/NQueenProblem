@@ -3,14 +3,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class dfsQueen{
-    int[] cases;
-    long nbrSolution = 0;
     long nbrNGenerer = 0,nbrNExploiter =0;
-    public dfsQueen(int n) {
-        cases = new int[n];
-        for(int i= 0;i<n;i++){
-            this.cases[i] = -1;
-        }
+    public dfsQueen() {
     }
     void DFS(Problem p){
         int row = 0,i;
@@ -28,16 +22,15 @@ public class dfsQueen{
             nbrNExploiter++;
             noeudCurrent = ListsOverts.removeLast();
             if(noeudCurrent.row == n-1){
-                nbrSolution++;
-                if(nbrSolution == 1) {
+
                     System.arraycopy(noeudCurrent.cases, 0, p.cases, 0, n);
                     return;
-                }
+
             }
             else {
                 //NeudCurrent
                 row = noeudCurrent.row + 1;
-                tempList = casePossible(row, noeudCurrent);
+                tempList = casePossible(row, noeudCurrent.cases);
                 for (Integer integer : tempList) {
                     for(i=0; i<row;i++){
                         tempNeud.cases[i] = noeudCurrent.cases[i];
@@ -50,29 +43,29 @@ public class dfsQueen{
             }
         }
     }
-    List<Integer> casePossible(int row,noeud noeud_temp){
+    List<Integer> casePossible(int row,int[] noeud_temp){
         boolean isSafe;
         int diag;
         List<Integer> casePosiible = new ArrayList<Integer>();
-        for(int j=0;j<noeud_temp.cases.length;j++) {
+        for(int j=0;j<noeud_temp.length;j++) {
             isSafe = true;
             for (int i = 0; i < row && isSafe; i++) {
                 diag = (row-i)+j; // digonalSuppAdd
-                if(diag<noeud_temp.cases.length){
-                    if(noeud_temp.cases[i] == diag){
+                if(diag<noeud_temp.length){
+                    if(noeud_temp[i] == diag){
                         isSafe=false;
                         continue;
                     }
                 }
                 diag = j - (row-i); // digonalSuppAgauche
                 if(diag>=0){
-                    if(noeud_temp.cases[i] == diag) {
+                    if(noeud_temp[i] == diag) {
                         isSafe = false;
                         continue;
                     }
                 }
                 // VerifierColumn
-                if(noeud_temp.cases[i] == j) isSafe = false;
+                if(noeud_temp[i] == j) isSafe = false;
             }
             if(isSafe) casePosiible.add(j);
         }
