@@ -22,5 +22,6 @@ public class noeud{
         this.cases[row] = colm;
         this.row = row2;
     }
+
 }
 

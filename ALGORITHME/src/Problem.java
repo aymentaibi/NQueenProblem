@@ -6,21 +6,21 @@ public class Problem {
     public Problem(int n) {
         this.cases = new int[n];
     }
-    int Fiteness(){
+    int Fiteness(solution s){
         int diag;
         int malePositioner = 0;
-        for(int row = 0;row<this.cases.length;row++){
+        for(int row = 0;row<s.cases.length;row++){
             for(int i=0;i<row;i++){
-                diag = (row-i)+this.cases[row]; //Verfier Diagonale Superieur a droite
-                if(diag == this.cases[i]){
+                diag = (row-i)+s.cases[row]; //Verfier Diagonale Superieur a droite
+                if(diag == s.cases[i]){
                     malePositioner++;
                     continue;}
-                diag = this.cases[row] - (row-i);//Verfier Diagonale Superieur a gauche
-                if(diag == this.cases[i]){
+                diag = s.cases[row] - (row-i);//Verfier Diagonale Superieur a gauche
+                if(diag == s.cases[i]){
                     malePositioner++;
                     continue;
                 }
-                if(this.cases[i] == this.cases[row]){
+                if(s.cases[i] == s.cases[row]){
                     malePositioner++;
                 }//Verfier Diagonale Superieur a gauche
             }
