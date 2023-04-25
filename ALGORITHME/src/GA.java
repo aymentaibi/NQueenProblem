@@ -38,38 +38,56 @@ public class GA {
         new_solution.Fiteness();
         return new_solution;
     }
-    solution algorithmeGA(int n,int TailleP, int nbrIteration){
+    solution algorithmeGA(int n,int TailleP, int nbrIteration,double taux_croisement){
+        int TauxCroisement_1 = (int) Math.round(TailleP * 0.2);
+        int TauxCroisement_2 = (int) Math.round(TailleP * 0.2);
+        int newPopSize = (int) Math.round(TailleP * 0.4);
         ArrayList<solution> pop = generationSAleo(TailleP, n);
+        ArrayList<solution> pop_2;
+        ArrayList<solution> children = new ArrayList<>();
         pop.sort(Comparator.comparing(solution::getFitness));
         solution child_1C,child_1M,child_2C,child_2M,child_5,child_6;
         int max = pop.size();
         int worstF;
-        int bestC1=0,bestC2=0;
+        int TailleC,bestF=pop.get(0).fitness,nbrChangementBF=0;
         for (int i = 0; i < nbrIteration && pop.get(0).fitness != 0; i++) {
-            child_1C = croisement(pop.get(0),pop.get(max-1));
-            child_1M = mutation(child_1C);
-            child_2C = croisement(pop.get(0),pop.get(1));
-            child_2M = mutation(child_2C);
+            children.clear();
+            for (int j = 0; j <TauxCroisement_1 ; j=j+2) {
+                if(taux_croisement > Math.random()) {
+                    children.add(croisement(pop.get(j), pop.get(max - j - 1)));
+                }
+                else{
+                    children.add(mutation(pop.get(j)));
+                    children.add(mutation(pop.get(max - j - 1)));
+                }
+            }
+            for (int j = 0; j <TauxCroisement_2 ; j=j+2) {
+                if(taux_croisement > Math.random()) {
+                    children.add(croisement(pop.get(j), pop.get(j+1)));
+                }
+                else{
+                    children.add(mutation(pop.get(j)));
+                    children.add(mutation(pop.get(j+1)));
+                }
+            }
+            TailleC = children.size();
+            for (int j = 0; j < TailleC; j++) {
+                children.add(mutation(children.get(j)));
+            }
             worstF = pop.get(max-1).fitness;
-            if(child_1C.fitness <= worstF){
-                pop.remove(max-1);
-                pop = insertElemn(pop,child_1C);
-                bestC1++;
+            for (int j = 0; j < children.size(); j++) {
+                if (children.get(j).fitness <= worstF){
+                    pop.remove(max-1);
+                    pop = insertElemn(pop,children.get(j));
+                }
+                children.remove(j);
             }
-            if(child_1M.fitness <= worstF){
-                pop.remove(max-1);
-                pop = insertElemn(pop,child_1M);
-                bestC1++;
-            }
-            if(child_2C.fitness <= worstF){
-                pop.remove(max-1);
-                pop = insertElemn(pop,child_2C);
-                bestC2++;
-            }
-            if(child_2M.fitness <= worstF){
-                pop.remove(max-1);
-                pop = insertElemn(pop,child_2M);
-                bestC2++;
+            if(i%100 == 0){
+                TailleC = pop.get(0).fitness;
+                if(bestF > TailleC){ nbrChangementBF = 0; bestF = TailleC;}
+                else nbrChangementBF++;
+                System.out.print("iteration i:" + i +" Best Fiteness ");
+                System.out.println(TailleC);
             }
         }
         return pop.get(0);
