@@ -7,6 +7,13 @@ public class solution {
      solution(int n){
         this.cases = new int[n];
     }
+
+    public solution(int[] n) {
+        this.cases = new int[n.length];
+        System.arraycopy(n, 0, this.cases, 0, n.length);
+        this.Fiteness();
+    }
+
     void setRandomSolution(){
         ArrayList<Integer> tab=  new ArrayList<Integer>();
         for (int i = 0; i < this.cases.length; i++) {

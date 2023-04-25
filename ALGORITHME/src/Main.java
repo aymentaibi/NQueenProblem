@@ -5,29 +5,22 @@ import java.io.PrintStream;
 public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
-        int i = 600;
-        /*PrintStream out = new PrintStream(new FileOutputStream("Test_2.txt"));
-        System.setOut(out);
-        */
-        //for(i=4;i<=100;i=i+2){
-            //Problem prblm = new Problem(i);
-            //prblm.SolveByDFS();
-            //prblm.SolveByHeurstique();
-            //prblm.SolveByHeurstique_2();
+        int i = 100;
+        PSO pso = new PSO();
+        int taillePop ,nbrIteration ;
+        double c1,  c2,  alpha;
+        taillePop = 100;
+        nbrIteration = 5000;
+        c1 = 0.8;
+        c2 = 1.5;
+        alpha = 0;
+        solution s = pso.pso_algorithme(i,taillePop,c1,c2,alpha,nbrIteration);
+        System.out.println(i + " ----- "+s.fitness);
+        /*
             GA ga = new GA();
             solution s = ga.algorithmeGA(i,50,8000,0);
             System.out.println(i + " ----- "+s.fitness);
-            /*for (int j = 0; j < s.cases.length; j++) {
-                System.out.print(s.cases[j] + " ");
-
-            }*/
-        //}
-        /*
-        for(i=8;i<=38;i=i+2){
-            Problem prblm = new Problem(i);
-            prblm.SolveByBFS();
-        }
-        */
+         */
 
     }
 }
