@@ -13,14 +13,14 @@ public class Particul extends solution{
         System.arraycopy(this.cases, 0, pBest, 0, this.cases.length);
         pBestF = this.fitness;
         for (int i = 0; i < n; i++) {
-            this.v[i] = Math.random() + (double) 1;
+            this.v[i] = Math.random()*2 -1;
         }
     }
 
     void updateV(double alpha, double c1, double c2,int[] Gbest){
         double r1 = Math.random();
         double r2 = Math.random();
-        alpha = Math.random();
+        //alpha = Math.random();
         for (int i = 0; i < this.v.length; i++) {
             this.v[i] = alpha * this.v[i] + c1*r1*(this.pBest[i] - this.cases[i]) + c2*r2*(Gbest[i] * this.cases[i]);
         }
