@@ -30,7 +30,10 @@ public class Particul extends solution{
             this.cases[i] = (this.cases[i] + (int)this.v[i])% this.cases.length;
         }
         this.Fiteness();
-        if(this.pBestF > this.fitness) this.pBestF = this.fitness;
+        if(this.pBestF > this.fitness){
+            this.pBestF = this.fitness;
+            System.arraycopy(this.cases, 0, this.pBest, 0, this.cases.length);
+        }
     }
     void fixCases(){
         List<Integer> integerList = new ArrayList<>();
