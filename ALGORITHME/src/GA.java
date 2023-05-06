@@ -38,15 +38,13 @@ public class GA {
         new_solution.Fiteness();
         return new_solution;
     }
-    solution algorithmeGA(int n,int TailleP, int nbrIteration,double taux_croisement){
+    solution algorithmeGA(int n,int TailleP, int nbrIteration,double taux_croisement,double taux_mutation){
         int TauxCroisement_1 = (int) Math.round(TailleP * 0.2);
         int TauxCroisement_2 = (int) Math.round(TailleP * 0.2);
-        int newPopSize = (int) Math.round(TailleP * 0.4);
         ArrayList<solution> pop = generationSAleo(TailleP, n);
         ArrayList<solution> pop_2;
         ArrayList<solution> children = new ArrayList<>();
         pop.sort(Comparator.comparing(solution::getFitness));
-        solution child_1C,child_1M,child_2C,child_2M,child_5,child_6;
         int max = pop.size();
         int worstF;
         int TailleC,bestF=pop.get(0).fitness,nbrChangementBF=0;
@@ -72,7 +70,9 @@ public class GA {
             }
             TailleC = children.size();
             for (int j = 0; j < TailleC; j++) {
-                children.add(mutation(children.get(j)));
+                if(taux_mutation >= Math.random()) {
+                    children.add(mutation(children.get(j)));
+                }
             }
             worstF = pop.get(max-1).fitness;
             for (int j = 0; j < children.size(); j++) {
@@ -82,12 +82,11 @@ public class GA {
                 }
                 children.remove(j);
             }
-            if(i%100 == 0){
-                TailleC = pop.get(0).fitness;
-                if(bestF > TailleC){ nbrChangementBF = 0; bestF = TailleC;}
-                else nbrChangementBF++;
-                System.out.print("iteration i:" + i +" Best Fiteness ");
-                System.out.println(TailleC);
+            if(nbrChangementBF == 3){
+                pop_2 = generationSAleo(TailleP,n);
+                pop_2.add(new solution(pop.get(0).cases));
+                pop.sort(Comparator.comparing(solution::getFitness));
+                pop = pop_2;
             }
         }
         return pop.get(0);

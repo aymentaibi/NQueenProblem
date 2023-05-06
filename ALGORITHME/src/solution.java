@@ -28,19 +28,25 @@ public class solution {
     void Fiteness(){
         int diag;
         int malePositioner = 0;
+        boolean enAttqck;
         for(int row = 0;row<this.cases.length;row++){
-            for(int i=0;i<row;i++){
+            enAttqck =  false;
+            for(int i=0;i<row && !enAttqck;i++){
                 diag = (row-i)+this.cases[row]; //Verfier Diagonale Superieur a droite
                 if(diag == this.cases[i]){
                     malePositioner++;
-                    continue;}
+                    enAttqck = true;
+                    break;}
                 diag = this.cases[row] - (row-i);//Verfier Diagonale Superieur a gauche
                 if(diag == this.cases[i]){
                     malePositioner++;
-                    continue;
+                    enAttqck = true;
+                    break;
                 }
                 if(this.cases[i] == this.cases[row]){
+                    enAttqck = true;
                     malePositioner++;
+                    break;
                 }//Verfier Diagonale Superieur a gauche
             }
         }
